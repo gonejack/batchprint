@@ -49,35 +49,9 @@ open BatchPrint.app
 Build output:
 
 - `BatchPrint.app` — the runnable application
-- `.build/manual/` — intermediate build products (safe to delete)
+- `build/` — intermediate build products (safe to delete)
 
 > SwiftPM cannot initialize correctly in the current environment (`swift build` reports a property list parsing error), so use the direct compilation flow in `build.sh` instead of `swift build`.
-
-## Releases
-
-Pushing a version tag builds the universal app and publishes a GitHub Release with a zipped app and SHA-256 checksum:
-
-```sh
-git tag v1.0.0
-git push origin v1.0.0
-```
-
-The tag must match `CFBundleShortVersionString` in `Info.plist`. GitHub Actions runs on `macos-26`, verifies the universal binary, code signature, and localization resources, then publishes `BatchPrint-<version>.zip` and its checksum. Builds on `main` and pull requests are uploaded as workflow artifacts without creating a release.
-
-## Localization
-
-The interface ships with English and Simplified Chinese resources:
-
-- English is the development language and the source of the string keys in code.
-- `Resources/zh-Hans.lproj/Localizable.strings` contains the Simplified Chinese translations.
-- `Resources/zh-Hans.lproj/InfoPlist.strings` localizes the app name to **批量打印**; `Resources/en.lproj/InfoPlist.strings` keeps it as **BatchPrint**.
-- The app follows the system's preferred language list and falls back to English when Chinese is not preferred.
-
-To force a language for testing:
-
-```sh
-open BatchPrint.app --args -AppleLanguages '(zh-Hans)'
-```
 
 ## Implementation notes
 
@@ -95,26 +69,3 @@ open BatchPrint.app --args -AppleLanguages '(zh-Hans)'
 - Actual print options depend on the selected printer driver. CUPS may reject a job if the printer does not support the chosen paper size or duplex mode.
 - One paper size and one copy (fixed at 1) apply to the whole batch; page ranges, per-file settings, and print previews are not supported.
 - All files are submitted as a single print job instead of being queued one by one.
-
-## Project layout
-
-```
-Sources/BatchPrint/
-  BatchPrintApp.swift    App entry point, Finder file opening, window positioning
-  ContentView.swift      Main UI, drop area, file list, settings, and status
-  ConfirmationView.swift Print confirmation sheet
-  PrintViewModel.swift   File inspection, printer list, confirmation, and printing flow
-  PrintService.swift     PDF merging, grayscale conversion, CUPS submission
-  Models.swift           Print options, file kinds, and paper mappings
-  Theme.swift            Colors and shared UI components
-  Localization.swift     Localization helpers for dynamic strings
-Resources/
-  AppIcon.icns           Application icon
-  AppIcon.png            Icon used in this README
-  en.lproj/              English app metadata
-  zh-Hans.lproj/         Simplified Chinese interface and app metadata
-Scripts/generate_icon.swift Icon generator
-Samples/                 Sample files for testing
-Info.plist               Application metadata
-build.sh                 Universal binary build script
-```

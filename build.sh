@@ -4,17 +4,21 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 APP_NAME="BatchPrint"
 BUNDLE_NAME="${APP_NAME}.app"
-BUILD_DIR="${ROOT_DIR}/.build/manual"
+BUILD_DIR="${ROOT_DIR}/build"
 APP_DIR="${ROOT_DIR}/${BUNDLE_NAME}"
 MIN_MACOS="13.0"
 
 cd "${ROOT_DIR}"
 
+rm -rf "${BUILD_DIR}"
 mkdir -p "${BUILD_DIR}"
 
 echo "▸ Compiling universal binary…"
 for ARCH in arm64 x86_64; do
     echo "  · ${ARCH}"
+    # Use a visible build directory: SwiftPM owns .build/ and may clean it,
+    # which can remove our linker output in the middle of a build.
+    mkdir -p "${BUILD_DIR}"
     swiftc \
         -O \
         -whole-module-optimization \
@@ -22,6 +26,7 @@ for ARCH in arm64 x86_64; do
         -target "${ARCH}-apple-macosx${MIN_MACOS}" \
         Sources/BatchPrint/*.swift \
         -o "${BUILD_DIR}/${APP_NAME}-${ARCH}"
+    test -f "${BUILD_DIR}/${APP_NAME}-${ARCH}"
 done
 
 lipo -create \
