@@ -1,0 +1,69 @@
+name: Build and Release
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build universal app
+    runs-on: macos-26
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Show toolchain
+        run: |
+          xcodebuild -version || true
+          swift --version
+
+      - name: Build app bundle
+        run: ./build.sh
+
+      - name: Verify app bundle
+        run: |
+          lipo -info BatchPrint.app/Contents/MacOS/BatchPrint
+          codesign --verify --deep --strict BatchPrint.app
+          test -f BatchPrint.app/Contents/Resources/en.lproj/InfoPlist.strings
+          test -f BatchPrint.app/Contents/Resources/zh-Hans.lproj/InfoPlist.strings
+          test -f BatchPrint.app/Contents/Resources/zh-Hans.lproj/Localizable.strings
+          test -f BatchPrint.app/Contents/Resources/AppIcon.icns
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: BatchPrint-app
+          path: BatchPrint.app
+
+      - name: Package release
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          set -euo pipefail
+          VERSION="${GITHUB_REF_NAME#v}"
+          PLIST_VERSION=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' Info.plist)
+          if [ "$VERSION" != "$PLIST_VERSION" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match CFBundleShortVersionString $PLIST_VERSION"
+            exit 1
+          fi
+          ditto -c -k --sequesterRsrc --keepParent BatchPrint.app "BatchPrint-${VERSION}.zip"
+          shasum -a 256 "BatchPrint-${VERSION}.zip" > "BatchPrint-${VERSION}.zip.sha256"
+
+      - name: Publish GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          VERSION="${GITHUB_REF_NAME#v}"
+          gh release create "$GITHUB_REF_NAME" \
+            "BatchPrint-${VERSION}.zip" \
+            "BatchPrint-${VERSION}.zip.sha256" \
+            --title "BatchPrint ${VERSION}" \
+            --generate-notes \
+            --latest

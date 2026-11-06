@@ -53,6 +53,17 @@ Build output:
 
 > SwiftPM cannot initialize correctly in the current environment (`swift build` reports a property list parsing error), so use the direct compilation flow in `build.sh` instead of `swift build`.
 
+## Releases
+
+Pushing a version tag builds the universal app and publishes a GitHub Release with a zipped app and SHA-256 checksum:
+
+```sh
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+The tag must match `CFBundleShortVersionString` in `Info.plist`. GitHub Actions runs on `macos-26`, verifies the universal binary, code signature, and localization resources, then publishes `BatchPrint-<version>.zip` and its checksum. Builds on `main` and pull requests are uploaded as workflow artifacts without creating a release.
+
 ## Localization
 
 The interface ships with English and Simplified Chinese resources:
