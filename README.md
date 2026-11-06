@@ -1,3 +1,4 @@
+<!--suppress HtmlDeprecatedAttribute -->
 <p align="center">
   <img src="Resources/AppIcon.png" width="144" height="144" alt="BatchPrint app icon">
 </p>
@@ -6,6 +7,12 @@
 
 <p align="center">
   A small native macOS utility for batch printing: drop in a set of files, choose a printer and print options, review everything once, and send it all to the print queue as a single job.
+</p>
+
+<p align="center">
+  <a href="https://github.com/gonejack/batchprint/releases/latest"><img src="https://img.shields.io/github/v/release/gonejack/batchprint?style=flat-square" alt="Latest release"></a>
+  <img src="https://img.shields.io/badge/macOS-13%2B-black?style=flat-square&amp;logo=apple" alt="macOS 13 or later">
+  <img src="https://img.shields.io/badge/Universal-Intel%20%7C%20Apple%20Silicon-blue?style=flat-square" alt="Universal: Intel and Apple Silicon">
 </p>
 
 ## Features
