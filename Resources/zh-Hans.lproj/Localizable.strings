@@ -1,0 +1,123 @@
+/* BatchPrint — Simplified Chinese interface strings (English keys) */
+
+/* App and general */
+"BatchPrint" = "批量打印";
+"%lld File" = "%lld 个文件";
+"%lld Files" = "%lld 个文件";
+"%lld Page" = "%lld 页";
+"%lld Pages" = "%lld 页";
+"Print" = "打印";
+"Print %lld File" = "打印 %lld 个文件";
+"Print %lld Files" = "打印 %lld 个文件";
+"Total %@" = "共 %@";
+"Job %@" = "作业 %@";
+"%@ · %@" = "%@ · %@";
+"BatchPrint · %lld Files" = "批量打印 · %lld 个文件";
+
+/* Print options */
+"Single" = "单面";
+"Double" = "双面";
+"Single-sided" = "单面";
+"Double-sided (Long Edge)" = "双面（长边翻转）";
+"Color" = "彩色";
+"B&W" = "黑白";
+"Black & White" = "黑白";
+"Black & White (Grayscale)" = "黑白（灰度）";
+"Duplex" = "双面";
+"Print Mode" = "打印方式";
+"Paper" = "纸张";
+"Printer" = "打印机";
+"4 × 6 Photo" = "4 × 6 英寸照片";
+
+/* File kinds */
+"Files" = "文件列表";
+"Image" = "图片";
+"Text" = "文本";
+"Clear" = "清空";
+
+/* Main window */
+"Drop files, choose settings, and send everything to the print queue at once." = "拖入文件，设置参数，一次发送到打印队列";
+"Supports PDF, images, TXT and RTF · Click to choose files" = "支持 PDF、图片、TXT、RTF · 也可点击选择文件";
+"Drop files here to add more" = "拖入文件继续添加";
+"Clear file list" = "清空文件列表";
+"Drop more files here" = "可将更多文件拖到这里";
+"Remove file" = "移除文件";
+"Release to add files" = "松开以添加文件";
+"Release to Add" = "松开即可添加";
+"Drop Files Here" = "把文件拖到这里";
+"Keep Dropping More Files" = "继续拖入更多文件";
+"Add print files" = "添加打印文件";
+"Drop PDF, image, text, or RTF files here, or click to choose files" = "拖入 PDF、图片、文本或 RTF 文件，或点按选择文件";
+
+/* Settings and footer */
+"Duplex printing requires a printer that supports automatic duplex." = "双面打印需要打印机支持自动双面。";
+"Black & white mode converts documents to grayscale first." = "选择黑白时，文档会先转换为灰度。";
+"No printers available" = "没有可用打印机";
+"Refresh Printer List" = "刷新打印机列表";
+"Refresh printer list" = "刷新打印机列表";
+"Open Printer Settings…" = "打开打印机设置…";
+"Open Printer Settings" = "打开打印机设置";
+"Open Settings" = "打开设置";
+"Print (⌘↩)" = "打印（⌘↩）";
+"No printer detected. Add one in System Settings first." = "未检测到打印机，请先在系统设置中添加。";
+"You'll review everything before printing." = "打印前会显示确认信息。";
+"You'll review everything before printing, and you can go back to adjust settings." = "打印前会显示确认信息，取消后可修改设置。";
+"Please wait and keep this window open" = "请稍候，不要关闭窗口";
+
+/* Alerts */
+"Printer Not Found" = "未找到打印机";
+"Add a printer in System Settings › Printers & Scanners, then return here and refresh the list." = "请先在“系统设置 › 打印机与扫描仪”中添加打印机，然后回到这里刷新列表。";
+"Later" = "稍后";
+"Print Failed" = "打印失败";
+"Notice" = "提示";
+"OK" = "好";
+
+/* Confirmation */
+"Confirm Print" = "确认打印";
+"Review the details below, then send everything to the print queue." = "请核对以下信息，确认后将发送到打印队列。";
+"Close" = "关闭";
+"Cancel to go back and adjust settings" = "取消后可返回修改设置";
+"Cancel" = "取消";
+"Start Printing" = "开始打印";
+
+/* Status, toasts, and progress */
+"Drop files to start printing" = "拖入文件即可开始打印";
+"No Printer Found" = "未找到打印机";
+"Add and enable a printer in System Settings first." = "请先在系统设置中添加并启用打印机。";
+"Printer List Refreshed" = "打印机列表已刷新";
+"Printers found: %lld" = "共找到 %lld 台打印机";
+"Files Already in the List" = "文件已在打印列表中";
+"No new files were added." = "没有添加新的文件。";
+"No Printable Files" = "没有可打印的文件";
+"Supports PDF, images, plain text, and RTF files." = "支持 PDF、图片、纯文本和 RTF 文件。";
+"Skipped %@" = "已跳过 %@";
+"Only readable PDF, image, plain text, and RTF files are supported." = "仅支持 PDF、图片、纯文本和 RTF，且文件需可读取。";
+"Duplicate files ignored: %lld" = "已忽略 %lld 个重复文件";
+"Files Added, but No Printer Found" = "文件已添加，但未找到打印机";
+"Add a printer in System Settings first." = "请先在系统设置中添加打印机。";
+"Add" = "添加";
+"Choose files to batch print" = "选择要批量打印的文件";
+"Add files before printing" = "请先添加要打印的文件";
+"Preparing to Print" = "正在准备打印";
+"Merging %@…" = "正在合并 %@…";
+"Processing %lld/%lld: %@" = "正在处理 %lld/%lld：%@";
+"Sending to Printer" = "正在发送到打印机";
+"Sent to Print Queue" = "已发送到打印队列";
+
+/* Print errors */
+"Unable to open PDF: %@" = "无法打开 PDF：%@";
+"This PDF is password-protected and cannot be printed: %@" = "PDF 已加密，需要密码才能打印：%@";
+"Printing is disabled for this PDF: %@" = "该 PDF 禁止打印：%@";
+"No printable content found in: %@" = "文件中没有可打印的内容：%@";
+"Unable to read image: %@" = "无法读取图片：%@";
+"Unable to read text encoding: %@" = "无法读取文本编码：%@";
+"Unable to create a temporary print file. Check disk space." = "无法创建临时打印文件，请检查磁盘空间。";
+"The selected printer is unavailable. Choose another printer." = "找不到所选打印机，请重新选择。";
+"The system print service is unavailable." = "系统打印服务不可用。";
+"Failed to submit the print job." = "发送打印任务失败。";
+"Selected Files" = "所选文件";
+
+/* Menus */
+"Add Files…" = "添加文件…";
+"Clear File List" = "清空文件列表";
+"Print…" = "打印…";
