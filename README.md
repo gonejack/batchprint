@@ -61,6 +61,21 @@ Replace the path if the app is somewhere else, then open the app normally.
 
 > This Finder shortcut may not work on macOS 26 or 27. If it does not, use Option 1 or Option 2 instead.
 
+### Option 4: Clone and build from source
+
+If you have Xcode Command Line Tools installed, you can build the app yourself:
+
+```sh
+git clone https://github.com/gonejack/batchprint.git
+cd batchprint
+./build.sh
+open BatchPrint.app
+```
+
+The build creates `BatchPrint.app` in the repository folder; you can drag it into your **Applications** folder. Because it is built locally, it should open without the download warning.
+
+> If `swiftc` is not available, install the command line tools first with `xcode-select --install`.
+
 ## Usage
 
 1. Open `BatchPrint.app`.
